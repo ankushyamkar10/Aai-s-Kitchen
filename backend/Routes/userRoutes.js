@@ -5,18 +5,17 @@ const {
   registerUser,
   loginUser,
   getMe,
-  getAllUsers,getUserOtherData,updateCart,updateFavourites,updatePurchased
+  getAllUsers, getUserOtherData, updateCart, updateFavourites,
 } = require('../controllers/userController');
 
 router.post('/register', registerUser);
 router.post('/login', loginUser);
 router.get('/me', protect, getMe);
 router.get('/', getAllUsers);
-router.patch('/favourites',updateFavourites)
-router.post('/purchased',updatePurchased)
-router.patch('/cart',updateCart)
-router.post('/favourites',getUserOtherData)
-router.post('/cart',getUserOtherData)
-router.get('/purchased',getUserOtherData)
+router.patch('/favourites', updateFavourites)
+router.patch('/cart', updateCart)
+router.post('/favourites', getUserOtherData)
+router.post('/cart', getUserOtherData)
+router.get('/purchased', getUserOtherData)
 
 module.exports = router;

@@ -1,7 +1,7 @@
-const asyncHandler = require('express-async-handler');
-const User = require('../models/userModel');
-const Order = require('../models/orderModel');
-const Product = require('../models/productModel');
+const asyncHandler = require("express-async-handler");
+const User = require("../models/userModel");
+const Order = require("../models/orderModel");
+const Product = require("../models/productModel");
 
 const getOrders = asyncHandler(async (req, res) => {
   const orders = await Order.find({ user: req.user.id });
@@ -9,63 +9,103 @@ const getOrders = asyncHandler(async (req, res) => {
 });
 
 const makeOrder = asyncHandler(async (req, res) => {
-  const { productName, quantity } = req.body;
-  if (!productName || !quantity) {
+  const orderDetails = req.body;
+
+  if (!orderDetails) {
     res.status(400);
-    throw new Error('Please choose All the Fields');
+    throw new Error("Insufficent Data!");
   }
+  const { orderedItems } = orderDetails;
+  const result = [];
 
-  const product = await Product.findOne({ name: productName });
+  // check if the quantity is there in count in stock
+  //in frontnd it won;t give more than count in stock so in last direct ceate order
 
-  if (product.countInStock - quantity >= 0) {
-    const newOrder = await Order.create({
-      productId: product._id,
-      user: req.user.id,
-      productName,
-      quantity,
-      productPrice: product.productPrice,
+  const newOrder = await Order.create({
+    user: req.user._id,
+    orderedItems,
+  });
+
+  for (let i in orderedItems) {
+    const product = await Product.findOne({
+      name: orderedItems[i].name,
     });
 
-    if (newOrder) {
-      const updatedProduct = await Product.findByIdAndUpdate(
-        product._id,
-        {
-          countInStock: product.countInStock - quantity,
-        },
-        { new: true }
-      );
-
-      console.log(updatedProduct);
-      res.status(200).json(newOrder);
-    } else {
-      res.status(500);
-      throw new Error('Some thing Went Wrong');
+    if (product) {
+      if (product.countInStock >= orderedItems[i].quantity) {
+        const updatedProduct = await Product.findByIdAndUpdate(
+          product._id,
+          {
+            countInStock: product.countInStock - orderedItems[i].quantity,
+          },
+          { new: true }
+        );
+        result.push(updatedProduct);
+      } else {
+        res.status(400).json({
+          message: `We have only ${product.countInStock} ${product.name} available now!`,
+        });
+      }
     }
-  } else if (quantity > product.countInStock) {
-    res.status(400);
-    res.json({
-      message: `We have only ${product.countInStock} ${productName} available now!`,
-    });
+    else {
+      res.status(400).json({
+        message: `no such item present`,
+      });
+    }
   }
+
+  if (newOrder) {
+    res.status(201).json(newOrder);
+  }
+
+  // const product = await Product.findOne({ name: productName });
+
+  // if (product.countInStock - quantity >= 0) {
+  //   const newOrder = await Order.create({
+  //     productId: product._id,
+  //     user: req.user.id,
+  //     productName,
+  //     quantity,
+  //     productPrice: product.productPrice,
+  //   });
+
+  //   if (newOrder) {
+  //     const updatedProduct = await Product.findByIdAndUpdate(
+  //       product._id,
+  //       {
+  //         countInStock: product.countInStock - quantity,
+  //       },
+  //       { new: true }
+  //     );
+
+  //     console.log(updatedProduct);
+  //     res.status(200).json(newOrder);
+  //   } else {
+  //     res.status(500);
+  //     throw new Error('Some thing Went Wrong');
+  //   }
+  // } else if (quantity > product.countInStock) {
+
+  // }
 });
 
 const cancelOrder = asyncHandler(async (req, res) => {
   const order = await Order.findById(req.params.id);
   if (!order) {
     res.status(400);
-    throw new Error('Item not found');
+    throw new Error("Item not found");
   }
 
   const user = await User.findById(req.user.id);
 
   if (!user) {
     res.status(401);
-    throw new Error('User not found');
+    throw new Error("User not found");
   }
 
   if (order.user.toString() !== user.id) {
     res.status(401);
-    throw new Error('User not authorized');
+    throw new Error("User not authorized");
   }
 
   const deletedItem = await Order.findByIdAndDelete(req.params.id, {

@@ -138,11 +138,13 @@ const updateCart = asyncHandler(async (req, res) => {
     throw new Error("User not found!");
   }
 
+  let response;
+
   const obj = {
     id: productId,
   };
 
-  let response;
+
   if (action === "add") {
     response = await User.findByIdAndUpdate(
       userId,
@@ -156,67 +158,32 @@ const updateCart = asyncHandler(async (req, res) => {
       { new: true }
     );
   }
-
-  res.status(200).json(response.cart);
-});
-
-const updatePurchased = asyncHandler(async (req, res) => {
-  const { userId, purchasedItems,orderId } = req.body;
-  const user = await User.findById(userId);
-  
-  if (!user) {
-    res.status(400);
-    throw new Error("User not found!");
+  else {
+    response = await User.findByIdAndUpdate(userId, {
+      $set: { cart: [] }
+    }, { new: true });
   }
 
-  const response = await User.findByIdAndUpdate(
-    userId,
-    { $push: { purchased: {orderId, purchasedItems } } },
-    { new: true }
-  );
-
-  res.status(200).json(response.purchased);
+  res.status(200).json(response.cart);
 });
 
 const getUserOtherData = asyncHandler(async (req, res) => {
   const { userId } = req.body;
   const user = await User.findById(userId);
-  
+
   if (!user) {
     res.status(400);
     throw new Error("User not found!");
   }
-  
-  if(req.url === '/cart')
+
+  if (req.url === '/cart')
     res.status(200).json(user.cart);
-  else if(req.url === '/favourites')
-  res.status(200).json(user.favourites);
-  else if( req.url === '/purchased')
-  res.status(200).json(user.purchased);
+  else if (req.url === '/favourites')
+    res.status(200).json(user.favourites);
+  else if (req.url === '/purchased')
+    res.status(200).json(user.purchased);
 });
 
-// const getCart = asyncHandler(async (req, res) => {
-  
-//   const { userId } = req.body;
-//   const user = await User.findById(userId.id);
-  
-//   if (!user) {
-//     res.status(400);
-//     throw new Error("User not found!");
-//   }
-//   res.status(200).json(user.cart);
-// });
-
-// const getPurchased = asyncHandler(async (req, res) => {
-//   const { userId } = req.body;
-//   const user = await User.findById(userId);
-
-//   if (!user) {
-//     res.status(400);
-//     throw new Error("User not found!");
-//   }
-//   res.status(200).json(user.favourites);
-// });
 
 const generateToken = (id) => {
   const token = jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -233,5 +200,5 @@ module.exports = {
   getUserOtherData,
   updateCart,
   updateFavourites,
-  updatePurchased,
+
 };

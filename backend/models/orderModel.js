@@ -7,17 +7,9 @@ const OrderSchema = mongoose.Schema(
       required: true,
       ref: 'User',
     },
-    productName: {
-      type: String,
+    orderedItems: {
+      type: Array,
       required: true,
-    },
-    quantity: {
-      type: Number,
-      requred: true,
-    },
-    productPrice: {
-      type: Number,
-      requred: true,
     }
   },
   {

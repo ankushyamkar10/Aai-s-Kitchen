@@ -15,17 +15,17 @@ const userSchema = mongoose.Schema(
       type: String,
       required: [true, 'Please add the password'],
     },
-    favourites : {
-      type : Array,
-      default : []
+    favourites: {
+      type: Array,
+      default: []
     },
-    cart:{
-      type:Array,
-      default : []
+    cart: {
+      type: Array,
+      default: []
     },
-    purchased : {
-      type : Array,
-      default : []
+    purchased: {
+      type: Array,
+      default: []
     }
   },
   {
