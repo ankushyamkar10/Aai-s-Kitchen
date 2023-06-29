@@ -12,6 +12,8 @@ import CheckOut from "./Pages/CheckOut";
 import axios from "axios";
 import Success from "./Pages/Success";
 import Failure from "./Pages/Failure";
+import Admin from "./Helpers/admin";
+import Orders from "./components/Orders";
 
 
 function App() {
@@ -26,12 +28,11 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/favourites" element={<Favourites />} />
-          <Route
-            path="/checkOut"
-            element={<CheckOut />}
-          />
+          <Route path="/checkOut" element={<CheckOut />}/>
           <Route path='/success' element={<Success />} />
           <Route path='/failure' element={<Failure />} />
+          <Route path='/admin' element={<Admin />} />
+          <Route path='/orders' element={<Orders />} />
         </Routes>
       </Router>
       <ToastContainer />

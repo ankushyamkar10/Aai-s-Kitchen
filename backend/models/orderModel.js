@@ -10,6 +10,10 @@ const OrderSchema = mongoose.Schema(
     orderedItems: {
       type: Array,
       required: true,
+    },
+    invoice: {
+      type: String,
+      required: true,
     }
   },
   {

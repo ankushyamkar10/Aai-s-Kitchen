@@ -57,7 +57,7 @@ const updateProduct = asyncHandler(async (req, res) => {
 
   const updatedProduct = await Product.findByIdAndUpdate(
     req.params.id,
-    req.body,
+    { imgUrl: req.body.imgUrl },
     {
       new: true,
     }
@@ -83,6 +83,7 @@ const deleteProduct = asyncHandler(async (req, res) => {
     res.status(200).json(deletedProduct);
   }
 });
+
 
 module.exports = {
   getAllProducts,

@@ -9,22 +9,14 @@ const getOrders = asyncHandler(async (req, res) => {
 });
 
 const makeOrder = asyncHandler(async (req, res) => {
-  const orderDetails = req.body;
+  const {orderedItems , invoice} = req.body;
 
-  if (!orderDetails) {
+  if (!orderedItems) {
     res.status(400);
     throw new Error("Insufficent Data!");
   }
-  const { orderedItems } = orderDetails;
+
   const result = [];
-
-  // check if the quantity is there in count in stock
-  //in frontnd it won;t give more than count in stock so in last direct ceate order
-
-  const newOrder = await Order.create({
-    user: req.user._id,
-    orderedItems,
-  });
 
   for (let i in orderedItems) {
     const product = await Product.findOne({
@@ -53,6 +45,12 @@ const makeOrder = asyncHandler(async (req, res) => {
       });
     }
   }
+
+  const newOrder = await Order.create({
+    user: req.user._id,
+    orderedItems,
+    invoice,
+  });
 
   if (newOrder) {
     res.status(201).json(newOrder);

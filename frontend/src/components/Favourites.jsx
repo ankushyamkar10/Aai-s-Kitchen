@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import ProductWrapper from "./ProductWrapper";
 import { getFavAndCart } from "../Helpers/FavAndCart";
-import images from "../Helpers/images";
 import { CircleLoader } from "react-spinners";
+import Navbar from "./Navbar";
 
 const Favourites = () => {
 
@@ -30,23 +30,26 @@ const Favourites = () => {
 
 
 
-  const toShow = data?.map((product) => {
-    const src = images.filter((item) => item.includes(product.name))
-    return (
-      <div key={product._id} >
-        <ProductWrapper product={product} favAndCart={favAndCart} setFavAndCart={setFavAndCart} src={src} />
-      </div>
-    );
-  });
+  const toShow = <div className="flex flex-wrap items-center justify-start gap-[2vw] ml-2">
+    {data?.map((product) => {
+      return (
+        <div key={product._id}  >
+          <ProductWrapper product={product} favAndCart={favAndCart} setFavAndCart={setFavAndCart} />
+        </div>
+      );
+    })
+    }
+  </div>
 
-  return (
-    <div>
-      hii
+  return (<>
+    <Navbar />
+    <div className="mt-16">
       {toShow}
       <Link to="/product">
         <button>Products</button>
       </Link>
     </div>
+  </>
   );
 };
 

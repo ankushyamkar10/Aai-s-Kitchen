@@ -5,6 +5,7 @@ const {
   addProduct,
   updateProduct,
   deleteProduct,
+  
 } = require('../controllers/productController');
 
 router.get('/', getAllProducts);

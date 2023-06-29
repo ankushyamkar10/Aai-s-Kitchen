@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const CheckOutWrapper = ({ product, onChange, setCart, src }) => {
+const CheckOutWrapper = ({ product, onChange, setCart }) => {
   const user = JSON.parse(localStorage.getItem("user"));
   const [quantity, setQuantity] = useState(product.countInStock === 0 ? 0 : 1);
 
@@ -24,7 +24,7 @@ const CheckOutWrapper = ({ product, onChange, setCart, src }) => {
   return (
     <div className="flex flex-row flex-wrap border border-gray-600 relative w-full my-4 ">
       <div className="relative">
-        <img src={src} alt="" className="w-32 h-[7.85rem]" />
+        <img src={product.imgUrl} alt="" className="w-32 h-[7.85rem]" />
         <div
           className={` w-4 h-4  absolute right-2 top-2 bg-white border-2 `}
           style={{ borderColor: color }}

@@ -4,7 +4,7 @@ import axios from "axios";
 import { Rating } from "@mui/material";
 import StarRatings from "react-star-ratings";
 
-const ProductWrapper = ({ product, favAndCart, setFavAndCart, src }) => {
+const ProductWrapper = ({ product, favAndCart, setFavAndCart }) => {
   const user = JSON.parse(localStorage.getItem("user"));
   const path = window.location.pathname;
   const color = product.type === "Non Veg" ? "red" : "green";
@@ -49,14 +49,13 @@ const ProductWrapper = ({ product, favAndCart, setFavAndCart, src }) => {
       }
     }
   };
-
   return (
     <div className=" relative w-[47vw] my-4 ">
       <div className="flex flex-col flex-wrap">
         {product.countInStock === 0 && (
           <div className="bg-white bg-opacity-10 w-[47vw] h-[19.1rem] absolute z-50 backdrop-blur-[1px] "></div>
         )}
-        <img src={src} alt={product.name} className=" h-44 max-h-38 " />
+        <img src={product.imgUrl} alt={product.name} className=" h-44 max-h-38 " />
         <div className="px-1 border border-gray-200 border-t-0">
           <h3 className="text-md font-semibold ">{product.name}</h3>
           <h3 className="text-sm">{product.description}</h3>
@@ -81,12 +80,12 @@ const ProductWrapper = ({ product, favAndCart, setFavAndCart, src }) => {
           <span className="text-xs ml-1">{`(${product.rating} / 5)`} </span>
 
           <div className="flex items-center justify-between relative my-2">
-            <button className="px-3 py-1 text-xs border border-black hover:text-white hover:bg-black rounded-[0.25rem]">
+            <button className="px-3 py-1 text-xs border border-black  hover:text-white hover:bg-yellow-500 hover:border-0 rounded-[0.25rem]">
               View
             </button>
             {path !== "/checkOut" && (
               <button
-                className={`px-3 py-1 text-xs border border-black hover:text-white hover:bg-black rounded-[0.25rem]`}
+                className={`px-3 py-1 text-xs border border-black hover:text-white hover:bg-yellow-500 hover:border-0 rounded-[0.25rem]`}
                 onClick={() => handleCart("/cart")}
                 disabled={product.countInStock === 0 ? true : false}
               >

@@ -26,16 +26,14 @@ const Cart = () => {
     );
 
     toShow = (
-      <div className="flex flex-wrap gap-4">
+      <div className="flex flex-wrap items-center gap-[2vw] ml-2">
         {data?.map((product) => {
-          const src = images.filter((item) => item.includes(product.name));
           return (
             <div key={product._id}>
               <ProductWrapper
                 product={product}
                 favAndCart={favAndCart}
                 setFavAndCart={setFavAndCart}
-                src={src}
               />
             </div>
           );
@@ -52,16 +50,18 @@ const Cart = () => {
           <CircleLoader color="black" size={25} loading={true} />
         </div>
       ) : (
-        <div className="">
+        <div className="mt-[4rem]">
           {toShow}
-          <Link to="/product">
-            <button className=" border border-black py-2 px-4">Products</button>
-          </Link>
-          <Link to="/checkOut">
-            <button className="ml-4 border border-black py-2 px-4">
-              Check Out!
-            </button>
-          </Link>
+          <div className="mt-4">
+            <Link to="/product">
+              <button className=" border border-black py-2 px-4">Products</button>
+            </Link>
+            <Link to="/checkOut">
+              <button className="ml-4 border border-black py-2 px-4">
+                Check Out!
+              </button>
+            </Link>
+          </div>
         </div>
       )}
     </>

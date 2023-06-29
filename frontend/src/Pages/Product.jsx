@@ -54,7 +54,7 @@ const Product = () => {
   return (
     <>
       <Navbar />
-      <div className="px-[2vw] mt-16">
+      <div className="px-[2vw] mt-[4.5rem]">
         <div className="relative flex flex-row flex-wrap gap-2 ">
           <div className="flex flex-1 min-w-full text-lg font-semibold mt-2">
             Search
@@ -69,7 +69,7 @@ const Product = () => {
               className="w-full py-1 px-2 mr-2 border text-md border-black focus:outline-none rounded-md"
               autoComplete="on"
             />
-            <GrSearch className="absolute top-[0.55rem] right-2" size={20} />
+            <GrSearch className="absolute top-[0.4rem] right-2" size={20} />
           </div>
           <div className="flex flex-col w-full">
             <div className="flex flex-1 items-center min-w-full text-lg font-semibold ">

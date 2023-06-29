@@ -3,7 +3,7 @@ import CheckOutWrapper from "../components/CheckOutWrapper";
 import { Link, useNavigate } from "react-router-dom";
 import { getFavAndCart } from "../Helpers/FavAndCart";
 import axios from "axios";
-import images from "../Helpers/images";
+// import images from "../Helpers/images";
 import { CircleLoader } from 'react-spinners'
 
 const handleClick = async (data) => {
@@ -89,7 +89,7 @@ const CheckOut = () => {
       setcheckOutData({ data: arr, totalPrice: totalCost });
     };
 
-    const src = images.filter((item) => item.includes(product.name));
+    // const src = images.filter((item) => item.includes(product.name));
 
     return (
       <div key={product._id}>
@@ -97,7 +97,7 @@ const CheckOut = () => {
           product={product}
           onChange={handleChange}
           setCart={setCart}
-          src={src}
+          // src={src}
         />
       </div>
     );

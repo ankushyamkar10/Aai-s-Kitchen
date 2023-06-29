@@ -42,6 +42,7 @@ const getOrder = async (session_id) => {
       {
         userId: user.id,
         orderedItems: purchasedItems,
+        invoice : invoice.hosted_invoice_url,
       },
       {
         headers: {

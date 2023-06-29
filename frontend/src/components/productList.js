@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import ProductWrapper from "./ProductWrapper";
 import { getFavAndCart } from "../Helpers/FavAndCart";
-import images from "../Helpers/images";
+// import images from "../Helpers/images";
 import { CircleLoader } from "react-spinners";
 
 const ProductList = () => {
@@ -55,14 +55,14 @@ const ProductList = () => {
   const toShow = (
     <div className="flex flex-wrap items-center gap-[2vw]">
       {data?.map((product) => {
-        const src = images.filter((item) => item.includes(product.name));
+        {/* const src = images.filter((item) => item.includes(product.name)); */}
         return (
           <div key={product._id}>
             <ProductWrapper
               product={product}
               favAndCart={favAndCart}
               setFavAndCart={setFavAndCart}
-              src={src}
+              // src={src}
             />
           </div>
         );
