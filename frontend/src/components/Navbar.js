@@ -19,7 +19,6 @@ const Navbar = () => {
         </div>
         <div className="flex items-center gap-4">
           {window.location.pathname !== '/favourites' && <div className='' onClick={() => navigate('/favourites')}><FaHeart className='h-5 w-5' /></div>}
-          {window.location.pathname !== '/cart' && <div className='' onClick={() => navigate('/cart')}><FaShoppingCart className='h-5 w-5' /></div>}
           <div>{user ? <SideBar /> : <FaUser className='h-5 w-5' onClick={()=>navigate('/login')}/> }</div>
         </div>
       </nav>

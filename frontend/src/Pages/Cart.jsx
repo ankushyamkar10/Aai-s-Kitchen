@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import ProductWrapper from "../components/ProductWrapper";
 import { getFavAndCart } from "../Helpers/FavAndCart";
-import images from "../Helpers/images";
 import Navbar from "../components/Navbar";
 import { CircleLoader } from "react-spinners";
+import EmptyCart from '../assets/empty-cart.gif'
 
 const Cart = () => {
   const navigate = useNavigate();
@@ -14,6 +14,7 @@ const Cart = () => {
 
   const [favAndCart, setFavAndCart] = useState();
   let toShow;
+
   useEffect(() => {
     if (!user) navigate("/login");
     getFavAndCart().then((res) => setFavAndCart(res));
@@ -52,14 +53,16 @@ const Cart = () => {
       ) : (
         <div className="mt-[4rem]">
           {toShow}
-          <div className="mt-4">
-            <Link to="/product">
-              <button className=" border border-black py-2 px-4">Products</button>
-            </Link>
-            <Link to="/checkOut">
+          <div className={`mt-4 ${favAndCart.cartList?.length > 0 && 'flex'}`} >
+            {favAndCart.cartList?.length > 0 ? <Link to="/checkOut">
               <button className="ml-4 border border-black py-2 px-4">
                 Check Out!
               </button>
+            </Link> : <div className="mt-[22vh] mx-auto w-fit"><img src={EmptyCart} alt=""  />
+            </div>
+            }
+             <Link to="/product">
+              <div className={` border border-black ${favAndCart.cartList?.length > 0 ? 'ml-4 w-fit py-2 px-4' : 'py-1 px-3 w-20 mx-auto text-sm rounded'} hover:bg-yellow-500 hover:border-yellow-500 hover:text-white `}>Products</div>
             </Link>
           </div>
         </div>

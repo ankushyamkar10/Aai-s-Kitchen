@@ -8,7 +8,7 @@ const services = [
       desc: "Prepares foods that have been grown using organic products by our farmers"
     },
     {
-      title: "Quick delivery",
+      title: "Fast Delivery",
       icons: <MdDeliveryDining className='text-yellow-500 h-10 w-10' />,
       desc: " Products are delivered in maximum 45 mins & minimum 15 mins in Mumbai "
     },

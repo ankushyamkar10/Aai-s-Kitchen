@@ -36,14 +36,16 @@ const Register = () => {
   }
 
   const handleSubmit = (e) => {
+
+    console.log(formData);
     e.preventDefault()
-    if (formData.password !== formData.password2)
+    if (formData.password1 !== formData.password2)
       toast.error('Passwords do not match')
     else {
       const userData = {
         name: formData.name,
         email: formData.email,
-        password: formData.password
+        password: formData.password1
       }
       dispatch(register(userData))
     }
@@ -71,7 +73,7 @@ const Register = () => {
           </div>
           <div className='mb-2'>
             <label>Password</label>
-            <input type='password' name='password1' value={formData.password} className='border border-black mx-2 px-2' onChange={(e) => { handleChange(e) }} />
+            <input type='password' name='password1' value={formData.password1} className='border border-black mx-2 px-2' onChange={(e) => { handleChange(e) }} />
           </div>
           <div className='mb-2'>
             <label>Confirm Password</label>

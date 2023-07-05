@@ -7,13 +7,15 @@ import Register from "./Pages/Register";
 import Home from "./Pages/Home";
 import Cart from "./Pages/Cart";
 import Login from "./Pages/Login";
-import Favourites from "./components/Favourites";
+import Favourites from "./Pages/Favourites";
 import CheckOut from "./Pages/CheckOut";
 import axios from "axios";
 import Success from "./Pages/Success";
 import Failure from "./Pages/Failure";
 import Admin from "./Helpers/admin";
-import Orders from "./components/Orders";
+import Orders from "./Pages/Orders";
+import Review from "./Pages/Review";
+import Navbar from "./components/Navbar";
 
 
 function App() {
@@ -33,9 +35,10 @@ function App() {
           <Route path='/failure' element={<Failure />} />
           <Route path='/admin' element={<Admin />} />
           <Route path='/orders' element={<Orders />} />
+          <Route path='/review' element={<Review />} />
         </Routes>
       </Router>
-      <ToastContainer />
+      <ToastContainer position="bottom-center"/>
     </>
   );
 }

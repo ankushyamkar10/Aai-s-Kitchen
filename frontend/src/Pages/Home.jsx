@@ -1,52 +1,69 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
-import { logout } from '../app/store'
+import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import CarouselComponent from '../components/Carousel'
 import gif from '../assets/cooking.gif'
 import Footer from '../components/Footer'
 import ServicesCard from '../components/ServicesCard'
 import services from '../Helpers/Services'
+import { FiArrowUpRight, FiPenTool } from 'react-icons/fi'
+import Review from '../components/Review'
+import { FaShoppingCart } from 'react-icons/fa'
 
 const Home = () => {
-  const dispatch = useDispatch()
+  const navigate = useNavigate()
   
   return (
     <div>
-      <Navbar/>
-      <div className='mt-[4rem] relative'>
+      <Navbar />
+      <div className='mt-[5rem] mx-4 relative'>
         <img src={gif} alt="cooking.gif" />
-        <div className='absolute top-4 left-auto ml-4 w-[80%] font-sans'>
-          <span className='text-2xl font-bold block text-yellow-500'>Are you hungry ?</span>
-          <span className='text-lg font-medium '>Aai's kitchen brings
-            <span className='text-2xl font-bold text-yellow-500'> "Maa" </span>
+        <div className='absolute top-0 left-auto w-[80%] font-sans'>
+          <span className='text-xl font-bold block text-yellow-500'>Are you hungry ?</span>
+          <span className='text-md font-medium '>Aai's kitchen brings
+            <span className='text-xl font-bold text-yellow-500'> "Maa" </span>
             ke hath ka khana for you!</span>
         </div>
+        <div className="flex items-center absolute top-24 bg-yellow-500 text-white text-sm w-fit px-2 py-1" onClick={() => { navigate('/product') }}>Try out <FiArrowUpRight className='ml-1' /></div>
       </div>
-      
+
       {/* <hr className='border-0 h-[1px] mb-4' style={{backgroundImage: 'linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0))'}}/> */}
 
-      <div className="text-center">
-        <div className='text-2xl font-bold text-yellow-500 mb-6 tracking-wide'>Our Services</div>
-        <div className='flex flex-wrap ml-4 -mt-4 py-4 gap-2'>{services.map((service, i) => {
-          return <ServicesCard key={i} service={service} />
-        })}</div>
-      </div>
-
-      <hr className='border-0 h-[1px] mt-4 mb-6' style={{backgroundImage: 'linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0))'}}/>
+      <hr className='border-0 h-[1px] mb-6' style={{ backgroundImage: 'linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0))' }} />
 
       <div className='mx-4'>
         <CarouselComponent />
       </div>
 
-      <Link to='/product'>Product</Link>
-      <hr />
-      <Link to='/cart'>Cart</Link>
-      <hr />
-      <Link to='/favourites'>Favourites</Link>
-      <hr />
-      <button onClick={() => dispatch(logout())}>Logout</button>
+      <hr className='border-0 h-[1px] my-6' style={{ backgroundImage: 'linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0))' }} />
+
+      <div className="text-center">
+        <div className='text-2xl font-bold text-yellow-500 mb-6 tracking-wide'>Our Services</div>
+        <div className='flex flex-wrap ml-[0.87rem] -mt-4 py-4 gap-2'>
+        {services.map((service, i) => {
+          return <ServicesCard key={i} service={service} />
+        })}</div>
+      </div>
+
+      <hr className='border-0 h-[1px] mt-2 mb-4' style={{ backgroundImage: 'linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0))' }} />
+
+      <div className='mx-4 mb-6'>
+        <div className='text-center text-2xl font-bold text-yellow-500 mb-4 tracking-wide'>Reviews</div>
+        <div className="border border-gray-300">
+          <Review />
+        </div>
+        <div className="flex items-center justify-between my-4">
+          <div className="text-sm">
+            Want to express yourself about us ?
+          </div>
+          <div className='py-1 px-2 ml-4 flex items-center gap-2 text-sm  bg-yellow-500 text-white border hover:bg-white hover:text-yellow-500 hover:border-yellow-500 rounded-sm' onClick={()=>{navigate('/review')}}>
+            Write <FiPenTool />
+          </div>
+        </div>
+      </div>
+      <div className='bg-yellow-500 p-4 fixed bottom-4 right-4 rounded-full w-fit' onClick={()=>navigate('/cart')}>
+          <FaShoppingCart size={30} className='pr-[1px] text-white'/>
+      </div>
       <Footer />
     </div>
   )

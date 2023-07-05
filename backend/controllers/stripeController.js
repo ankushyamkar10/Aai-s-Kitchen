@@ -6,7 +6,7 @@ const DOMAIN = 'http://localhost:3000'
 const makeOrder = asyncHandler(async (req, res) => {
     try {
 
-        const { items } = req.body;
+        const { items,email } = req.body;
 
         const session = await stripe.checkout.sessions.create({
             payment_method_types: ['card'],
@@ -20,9 +20,16 @@ const makeOrder = asyncHandler(async (req, res) => {
                         },
                         unit_amount: (item.price) * 100,
                     },
-                    quantity: item.quantity
+                    quantity: item.quantity,
+                    adjustable_quantity: {
+                        enabled: true,
+                        minimum: 1,
+                        maximum: item.stock,
+                      },
                 }
             }),
+            customer_email : email,
+            
             invoice_creation: {
                 enabled: true,
             },
@@ -33,7 +40,7 @@ const makeOrder = asyncHandler(async (req, res) => {
                 allowed_countries: ['IN'],
             },
             success_url: `${DOMAIN}/success`,
-            cancel_url: `${DOMAIN}/failure`
+            cancel_url: `${DOMAIN}/failure`,
         })
         res.json({ url: session.url, session: session })
 

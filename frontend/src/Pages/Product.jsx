@@ -17,6 +17,8 @@ import {
   FormControlLabel,
   FormGroup,
 } from "@mui/material";
+import Footer from "../components/Footer";
+import { FaShoppingCart } from "react-icons/fa";
 
 
 const label = { inputProps: { "aria-label": "Switch demo" } };
@@ -54,7 +56,7 @@ const Product = () => {
   return (
     <>
       <Navbar />
-      <div className="px-[2vw] mt-[4.5rem]">
+      <div className="px-[2vw] mt-[4.5rem] relative">
         <div className="relative flex flex-row flex-wrap gap-2 ">
           <div className="flex flex-1 min-w-full text-lg font-semibold mt-2">
             Search
@@ -129,11 +131,15 @@ const Product = () => {
             </FormControl>
           </div>
           <div className=" font-normal">Non Veg</div>
-          <div><button className="absolute right-2 top-[14.45rem]   px-3 py-1 text-md hover:border border-black rounded-[0.25rem]" onClick={(e) => { dispatch(setType("")); setChecked(false) }}>Reset</button>
+          <div className="absolute right-2 top-[10.2rem]"><button className=" px-3 py-1 text-md hover:bg-yellow-500 hover:text-white rounded " onClick={(e) => { dispatch(setType("")); setChecked(false) }}>Reset</button>
           </div>
         </div>
         <ProductList />
       </div>
+      <div className='bg-yellow-500 p-4 fixed bottom-4 right-4 rounded-full w-fit' onClick={() => navigate('/cart')}>
+        <FaShoppingCart size={30} className='pr-[1px] text-white' />
+      </div>
+      <Footer />
     </>
   );
 };

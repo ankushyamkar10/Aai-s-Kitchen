@@ -3,7 +3,7 @@ import avatar from '../assets/avatar.png'
 import '../App.css'
 import axios from 'axios';
 
-const url = "http://localhost:3001/api/product/648f4d79d841888ca11365b5"
+const url = "http://localhost:3001/api/product/648841311071d14111a4d624"
 
 function Admin() {
   

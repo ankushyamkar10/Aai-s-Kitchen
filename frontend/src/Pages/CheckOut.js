@@ -6,17 +6,19 @@ import axios from "axios";
 // import images from "../Helpers/images";
 import { CircleLoader } from 'react-spinners'
 
-const handleClick = async (data) => {
+const handleClick = async (data,email) => {
   const items = data.map((product) => {
     return {
       quantity: product.quantity,
       price: product.price,
       name: product.name,
+      stock : product.stock
     };
   });
 
   const res = await axios.post("http://localhost:3001/api/stripe/pay", {
     items,
+    email
   });
 
   if (!res) {
@@ -67,6 +69,7 @@ const CheckOut = () => {
         name: data[p].name,
         price: data[p].price,
         quantity: 1,
+        stock : data[p].countInStock
       };
       arr.push(obj);
       totalCost += data[p].price;
@@ -97,7 +100,6 @@ const CheckOut = () => {
           product={product}
           onChange={handleChange}
           setCart={setCart}
-          // src={src}
         />
       </div>
     );
@@ -111,7 +113,7 @@ const CheckOut = () => {
       <p>Total price :- $ {checkOutData.totalPrice}</p>
       <button
         className="mt-2 border border-black py-2 px-4"
-        onClick={() => handleClick(checkOutData.data)}
+        onClick={() => handleClick(checkOutData.data,user.email)}
       >
         Buy Now!
       </button>
