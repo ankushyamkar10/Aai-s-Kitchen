@@ -21,7 +21,7 @@ const ProductWrapper = ({ product, favAndCart, setFavAndCart }) => {
     else action = "add";
 
     const response = await axios.patch(
-      `http://localhost:3001/api/users${pathname}?action=${action}`,
+      `https://aais-kitchen.onrender.com/api/users${pathname}?action=${action}`,
       {
         userId: user.id,
         productId: product._id,
@@ -38,7 +38,7 @@ const ProductWrapper = ({ product, favAndCart, setFavAndCart }) => {
     action = addedToCart ? "remove" : "add";
 
     const response = await axios.patch(
-      `http://localhost:3001/api/users${pathname}?action=${action}`,
+      `https://aais-kitchen.onrender.com/api/users${pathname}?action=${action}`,
       {
         userId: user.id,
         productId: product._id,

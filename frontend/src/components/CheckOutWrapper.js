@@ -12,7 +12,7 @@ const CheckOutWrapper = ({ product, onChange, setCart }) => {
 
   const handleCart = async () => {
     const response = await axios.patch(
-      `http://localhost:3001/api/users/cart?action=remove`,
+      `https://aais-kitchen.onrender.com/api/users/cart?action=remove`,
       {
         userId: user.id,
         productId: product._id,

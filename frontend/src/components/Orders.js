@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 import Navbar from './Navbar';
 
 const getOrders = async (user) => {
-  const response = await axios.get('http://localhost:3001/api/order', { headers: { Authorization: `Bearer ${user.token}` } })
+  const response = await axios.get('https://aais-kitchen.onrender.com/api/order', { headers: { Authorization: `Bearer ${user.token}` } })
 
   if (response.data) {
     return response.data
