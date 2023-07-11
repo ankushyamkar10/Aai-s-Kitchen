@@ -17,10 +17,12 @@ const Navbar = () => {
           <img src={logo} alt="Logo" className='w-36 h-[4rem] ml-2' />
           {/* <h2 className='text-xl font-semibold'>aai's kitchen</h2> */}
         </div>
-        <div className="flex items-center gap-4">
-          {window.location.pathname !== '/favourites' && <div className='' onClick={() => navigate('/favourites')}><FaHeart className='h-5 w-5' /></div>}
-          <div>{user ? <SideBar /> : <FaUser className='h-5 w-5' onClick={()=>navigate('/login')}/> }</div>
+        {<div className="flex items-center gap-4">
+          {user && window.location.pathname !== '/favourites' && <div className='' onClick={() => navigate('/favourites')}><FaHeart className='h-5 w-5' /></div>}
+          <div>{user ? <SideBar /> : <FaUser className='h-5 w-5' onClick={() => navigate('/login')} />}</div>
         </div>
+        }
+        
       </nav>
     </div>
   )

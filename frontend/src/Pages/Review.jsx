@@ -41,7 +41,7 @@ const Review = () => {
     return (
         <div>
             <Navbar />
-            <div className="mt-[4rem] mx-4 relative">
+            <div className="mt-[4rem] mx-4 relative md:mx-auto md:w-[60vw]">
                 <div className="text-yellow-500 text-2xl font-semibold text-center mt-20">We Appreciate Your Review</div>
                 <div className="text-xs text-center">Your review will help us to improve our quality products and customer services.</div>
                 <form className={`mt-4 mx-2 flex flex-col px-4 border ${brgray2} py-4 bg-gray-100 rounded`} onSubmit={(e) => handleSubmit(e)}>
@@ -70,7 +70,7 @@ const Review = () => {
                     <div className='my-2'>
                         <textarea cols="36" rows="5" ref={reviewRef} placeholder='Write a review here' className={`w-full text-sm border ${brgray3} py-2 px-3 outline-none`} required></textarea>
                     </div>
-                    <button className=' py-2 px-4 text-md font-semibold tracking-wider bg-yellow-500 text-white rounded'>Submit</button>
+                    <button className=' py-2 px-4 mb-2 text-md font-semibold tracking-wider bg-yellow-500 text-white rounded'>Submit</button>
                 </form>
 
                 <div className='bg-yellow-500 p-4 fixed bottom-4 right-4 rounded-full w-fit' onClick={() => navigate('/cart')}>

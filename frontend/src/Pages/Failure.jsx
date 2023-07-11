@@ -28,7 +28,7 @@ const Failure = () => {
           </button>
 
         </div>
-        <div className="absolute top-24">
+        <div className="absolute top-24 left-[20%] md:left-[38%]">
           <img src={ErrorGif} alt="" className='h-96' /></div>
       </div>
     </div>

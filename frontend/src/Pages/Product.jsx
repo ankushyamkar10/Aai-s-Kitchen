@@ -56,7 +56,7 @@ const Product = () => {
   return (
     <>
       <Navbar />
-      <div className="px-[2vw] mt-[4.5rem] relative">
+      <div className="mx-2 my-[4.5rem] relative ">
         <div className="relative flex flex-row flex-wrap gap-2 ">
           <div className="flex flex-1 min-w-full text-lg font-semibold mt-2">
             Search
@@ -68,7 +68,7 @@ const Product = () => {
               id="search"
               placeholder="Find dishes here"
               onChange={(e) => onSearchTermChange(e)}
-              className="w-full py-1 px-2 mr-2 border text-md border-black focus:outline-none rounded-md"
+              className="w-full py-1 px-2 mr-0 border text-md border-black focus:outline-none rounded-md"
               autoComplete="on"
             />
             <GrSearch className="absolute top-[0.4rem] right-2" size={20} />
@@ -85,7 +85,7 @@ const Product = () => {
                   name="category"
                   id="category"
                   onChange={(e) => onCategoryChange(e)}
-                  className="w-[47vw] mt-2 py-1 px-1 mr-0 border border-black rounded-md"
+                  className="w-full mt-2 py-1 px-1 border border-black rounded-md"
                 >
                   <option value="">Meals</option>
                   <option value="Breakfast">Breakfast</option>
@@ -94,12 +94,12 @@ const Product = () => {
                 </select>
               </div>
 
-              <div className="text-md font-medium w-full">
+              <div className="text-md font-medium w-full mr-1">
                 <select
                   name="type"
                   id="type"
                   onChange={(e) => onSort(e)}
-                  className="w-[47vw] mt-2 py-1 px-2 ml-1 border border-black rounded-md"
+                  className="w-full mt-2 py-1 px-2 ml-1 border border-black rounded-md"
                 >
                   <option value="">Sort</option>
                   <option value="HTL">high to low</option>
@@ -136,8 +136,8 @@ const Product = () => {
         </div>
         <ProductList />
       </div>
-      <div className='bg-yellow-500 p-4 fixed bottom-4 right-4 rounded-full w-fit' onClick={() => navigate('/cart')}>
-        <FaShoppingCart size={30} className='pr-[1px] text-white' />
+      <div className='bg-yellow-500 p-3 fixed z-50 bottom-4 right-4 rounded-full w-fit' onClick={() => navigate('/cart')}>
+        <FaShoppingCart size={25} className='pr-[1px] text-white' />
       </div>
       <Footer />
     </>

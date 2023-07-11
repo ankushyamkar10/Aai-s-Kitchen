@@ -23,7 +23,9 @@ const Favourites = () => {
   }, [setFavAndCart]);
 
   if (!favAndCart)
-    return <div><CircleLoader color="black" size={25} loading={true} /></div>
+    return <div className="relative">
+      <CircleLoader color="black" size={25} loading={true} className="absolute top-[50vh] left-[50vw]" />
+    </div>
 
   const favList = favAndCart.favList;
   const data = productsData.filter((product) =>

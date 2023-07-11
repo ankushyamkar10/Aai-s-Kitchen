@@ -5,6 +5,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { register, reset } from '../app/store';
 import { toast } from 'react-toastify'
 import { CircleLoader } from 'react-spinners'
+import Navbar from '../components/Navbar';
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -52,38 +53,38 @@ const Register = () => {
   }
 
   if (isLoading)
-    return <div className="mt-48 ml-44"><CircleLoader color="black" size={25} loading={true} /></div>
+    return <div className="relative">
+      <CircleLoader color="black" size={25} loading={true} className="absolute top-[50vh] left-[50vw]" />
+    </div>
 
 
   return (
-    <main className='flex flex-col mt-2 px-2 mx-auto border-2 w-2/3 md:flex-row lg:flex-row  '>
-      <div className='h-fit w-fit'>
-        <img src={RegisterImg} alt='Register' className='' />
+    <div className='bg-gray-200 relative h-[100vh]'>
+      <Navbar />
+      <div className='flex flex-col gap-4 w-[80vw] mx-[10vw] p-6 bg-white absolute top-[15%] md:w-[60vw] md:mx-[20vw] lg:w-[40vw] lg:mx-[30vw]'>
+        <div className='w-64' >
+          <img src={RegisterImg} alt='Register' className='h-52 w-full mx-auto' />
+        </div>
+        <div className=''>
+          <form className='flex flex-col' onSubmit={(e) => handleSubmit(e)}>
+            <div className='mt-2'>
+              <input type='email' name='name' title='Enter your name' value={formData.name} className='text-sm w-full p-2 my-2 border border-gray-400 focus:outline-none rounded ' placeholder='Username' autoComplete='on' required onChange={(e) => { handleChange(e) }} />
+            </div>
+            <div className=''>
+              <input type='email' name='email' title='Enter your email' value={formData.email} className='text-sm w-full p-2 my-2 border border-gray-400 focus:outline-none rounded ' placeholder='Email' autoComplete='on' required onChange={(e) => { handleChange(e) }} />
+            </div>
+            <div className=''>
+              <input type='password' name='password1' title='Enter your password' value={formData.password1} className='text-sm w-full p-2 my-2 border border-gray-400 focus:outline-none rounded ' placeholder='Password' required onChange={(e) => { handleChange(e) }} />
+            </div>
+            <div className='my-2'>
+              <input type='password' name='password2' title='Confirm password' value={formData.password2} className='text-sm w-full p-2 mb- border border-gray-400 focus:outline-none rounded' placeholder='Confirm password' required onChange={(e) => { handleChange(e) }} />
+            </div>
+            <button type="submit" className='text-md py-2 my-2 bg-yellow-500 text-white rounded'>Submit</button>
+          </form>
+          <div className="text-xs text-center">Have an account? <span className='text-sm text-yellow-500'><Link to='/login'>Login</Link></span></div>
+        </div>
       </div>
-      <div>
-        <h3 className='text-xl text-center'>Welcome Back</h3>
-        <form className='flex flex-col' onSubmit={(e) => handleSubmit(e)}>
-          <div className='mt-2'>
-            <label>Username</label>
-            <input type='text' name='name' value={formData.name} className='border border-black mx-2 px-2' onChange={(e) => { handleChange(e) }} />
-          </div>
-          <div className='my-2'>
-            <label>Email</label>
-            <input type='email' name='email' value={formData.email} className='border border-black mx-2 px-2' onChange={(e) => { handleChange(e) }} />
-          </div>
-          <div className='mb-2'>
-            <label>Password</label>
-            <input type='password' name='password1' value={formData.password1} className='border border-black mx-2 px-2' onChange={(e) => { handleChange(e) }} />
-          </div>
-          <div className='mb-2'>
-            <label>Confirm Password</label>
-            <input type='password' name='password2' value={formData.password2} className='border border-black mx-2 px-2' onChange={(e) => { handleChange(e) }} />
-          </div>
-          <button type="submit" className='border border-black'>Submit</button>
-        </form>
-        <Link to='/login'><p className='border border-black mt-2'>Login ...</p></Link>
-      </div>
-    </main>
+    </div>
   );
 };
 

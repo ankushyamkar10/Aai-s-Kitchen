@@ -16,3 +16,7 @@
 .Toastify__toast-container {
   bottom: 0;
 }
+
+.continer > div {
+  flex: 50%;
+}

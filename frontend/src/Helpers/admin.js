@@ -31,6 +31,7 @@ function Admin() {
   }
 
   return (
+    
     <div className="App">
       <form onSubmit={handleSubmit}>
 
@@ -46,7 +47,7 @@ function Admin() {
           accept='.jpeg, .png, .jpg'
           onChange={(e) => handleFileUpload(e)}
          />
-
+        
          <h3>Doris Wilder</h3>
          <span>Designer</span>
 

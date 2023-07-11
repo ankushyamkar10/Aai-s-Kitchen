@@ -50,19 +50,21 @@ const ProductList = () => {
       };
     }
   );
-  if (!favAndCart) return <div className="mt-48 ml-44"><CircleLoader color="black" size={25} loading={true} /></div>;
+  if (!favAndCart) return <div className="relative">
+    <CircleLoader color="black" size={25} loading={true} className="absolute top-[50vh] left-[50vw]" />
+  </div>
 
   const toShow = (
-    <div className="flex flex-wrap items-center gap-[2vw]">
+    <div className=" flex flex-wrap items-center justify-start gap-2">
+    {/* <div className={`grid gap-2 grid-cols-2 grid-rows-[${data.length / 2}] md:gap-4 lg:gap-8  md:mt-8 md:grid-cols-3`} >*/}
       {data?.map((product) => {
-        {/* const src = images.filter((item) => item.includes(product.name)); */}
         return (
-          <div key={product._id}>
+          <div key={product._id} className="item">
             <ProductWrapper
               product={product}
               favAndCart={favAndCart}
               setFavAndCart={setFavAndCart}
-              // src={src}
+            // src={src}
             />
           </div>
         );

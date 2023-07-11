@@ -27,8 +27,8 @@ const Cart = () => {
     );
 
     toShow = (
-      <div className="flex flex-wrap items-center gap-[2vw] ml-2">
-        {data?.map((product) => {
+      <div className={` flex flex-wrap items-center justify-start gap-2 md:gap-8`} >
+      {data?.map((product) => {
           return (
             <div key={product._id}>
               <ProductWrapper
@@ -47,22 +47,22 @@ const Cart = () => {
     <>
       <Navbar />
       {!favAndCart ? (
-        <div className="mt-48 ml-44">
-          <CircleLoader color="black" size={25} loading={true} />
-        </div>
+        <div className="relative">
+        <CircleLoader color="black" size={25} loading={true} className="absolute top-[50vh] left-[50vw]"/>
+      </div>
       ) : (
-        <div className="mt-[4rem]">
+        <div className="mt-[4rem] mx-2 ">
           {toShow}
           <div className={`mt-4 ${favAndCart.cartList?.length > 0 && 'flex'}`} >
             {favAndCart.cartList?.length > 0 ? <Link to="/checkOut">
-              <button className="ml-4 border border-black py-2 px-4">
+              <button className=" border border-black py-2 px-4 hover:bg-yellow-500 hover:border-yellow-500 hover:text-white md:mt-8">
                 Check Out!
               </button>
             </Link> : <div className="mt-[22vh] mx-auto w-fit"><img src={EmptyCart} alt=""  />
             </div>
             }
              <Link to="/product">
-              <div className={` border border-black ${favAndCart.cartList?.length > 0 ? 'ml-4 w-fit py-2 px-4' : 'py-1 px-3 w-20 mx-auto text-sm rounded'} hover:bg-yellow-500 hover:border-yellow-500 hover:text-white `}>Products</div>
+              <div className={` border border-black ${favAndCart.cartList?.length > 0 ? 'ml-4 w-fit py-2 px-4' : 'py-1 px-3 w-20 mx-auto text-sm rounded'} hover:bg-yellow-500 hover:border-yellow-500 hover:text-white md:mt-8 `}>Products</div>
             </Link>
           </div>
         </div>
@@ -72,3 +72,4 @@ const Cart = () => {
 };
 
 export default Cart;
+//<div className={`border border-black py-1 px-3 w-fit mx-auto text-sm rounded hover:bg-yellow-500 hover:border-yellow-500 hover:text-white `}> Products</div>

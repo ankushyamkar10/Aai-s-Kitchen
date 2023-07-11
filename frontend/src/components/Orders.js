@@ -26,7 +26,9 @@ const Orders = () => {
   }, [])
 
   if (!orders)
-    return <CircleLoader color="black" size={25} loading={true} />
+    return <div className="relative">
+    <CircleLoader color="black" size={25} loading={true} className="absolute top-[50vh] left-[50vw]" />
+  </div>
     
   const toShow = orders.map((order) => {
     const { _id, orderedItems, invoice, createdAt } = order;

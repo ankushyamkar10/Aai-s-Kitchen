@@ -49,9 +49,6 @@ export default function SideBar() {
         {['My Orders'].map((text, index) => (
           <ListItem key={text} disablePadding>
             <ListItemButton onClick={() => navigate('/orders')}>
-              {/* <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon> */}
               <MdFoodBank className='mr-2 h-6 w-6' />
               <ListItemText primary={text} className='font-black' />
             </ListItemButton>

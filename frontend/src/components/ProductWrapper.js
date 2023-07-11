@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import { FaHeart, FaCaretDown, FaCaretUp, FaRegHeart } from "react-icons/fa";
 import axios from "axios";
-import { Rating } from "@mui/material";
 import StarRatings from "react-star-ratings";
-import { useNavigate } from "react-router-dom";
 
 const ProductWrapper = ({ product, favAndCart, setFavAndCart }) => {
   const user = JSON.parse(localStorage.getItem("user"));
@@ -53,21 +51,21 @@ const ProductWrapper = ({ product, favAndCart, setFavAndCart }) => {
   };
 
   return (
-    <div className=" relative w-[47vw] my-4 h-[20rem]">
+    <div className=" relative w-[183px] my-4 h-[20rem] md:w-[240px] md:h-[24rem]">
       <div className="flex flex-col flex-wrap">
         {product.countInStock === 0 && (
           <div className="bg-white bg-opacity-10 w-[47vw] h-[19.1rem] absolute z-50 backdrop-blur-[1px] "></div>
         )}
-        <img src={product.imgUrl} alt={product.name} className=" h-44 max-h-38 " />
-        <div className="px-1 border border-gray-200 border-t-0">
-          <h3 className="text-md font-semibold ">{product.name}</h3>
+        <img src={product.imgUrl} alt={product.name} className=" h-44 max-h-38 md:h-56 " />
+        <div className="px-1 border border-gray-200 border-t-0 md:pb-2 md:px-2">
+          <h3 className="text-md md:text-lg font-semibold tracking-wide ">{product.name}</h3>
           <h3 className="text-sm">{product.description}</h3>
           <div
             className={` w-4 h-4  absolute right-2 top-2 bg-white border-2 `}
             style={{ borderColor: color }}
           >
             <div
-              className={` w-2 h-2 z-10 rounded-full absolute top-[20%] left-[20%]`}
+              className={` w-2 h-2 z-10  rounded-full absolute top-[20%] left-[20%]`}
               style={{ backgroundColor: color }}
             ></div>
           </div>
@@ -75,7 +73,7 @@ const ProductWrapper = ({ product, favAndCart, setFavAndCart }) => {
           <p className="-mb-1">₹ {product.price}</p>
           <StarRatings
             rating={product.rating}
-            starDimension="15px"
+            starDimension={window.innerWidth > 768 ? "18px" : "15px"}
             starSpacing="0px"
             starEmptyColor="grey"
             starRatedColor="#FFD93D"
@@ -97,7 +95,7 @@ const ProductWrapper = ({ product, favAndCart, setFavAndCart }) => {
             )}
           </div>
 
-          {showDrawer && <div className="text-[0.7rem] leading-3 ">
+          {showDrawer && <div className="text-[0.7rem] leading-3 md:text-sm md:py-2">
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id, obcaecati? Nostrum sunt
           </div>
           }
@@ -107,9 +105,9 @@ const ProductWrapper = ({ product, favAndCart, setFavAndCart }) => {
               className="cursor-pointer"
             >
               {addedToFav ? (
-                <FaHeart className="w-5 h-5 z-10 absolute top-[11.3rem] right-[2%] text-red-600" />
+                <FaHeart className="w-5 h-5 z-10 absolute top-[11.3rem] md:top-[14.5rem] right-[2%] text-red-600" />
               ) : (
-                <FaRegHeart className="w-5 h-5 z-10 absolute top-[11.3rem]  right-[2%] text-red-600" />
+                <FaRegHeart className="w-5 h-5 z-10 absolute top-[11.3rem] md:top-[14.5rem] right-[2%] text-red-600" />
               )}
             </div>
           )}
