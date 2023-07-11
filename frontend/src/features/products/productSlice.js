@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const url = 'http://localhost:3001/api/product'
+const url = 'https://aais-kitchen.onrender.com/api/product'
 
 const initialState = {
   searchTerm: "",
