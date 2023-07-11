@@ -12,7 +12,7 @@ import foodDelivery from "../assets/FoodDelivery.gif"
 const user = JSON.parse(localStorage.getItem("user"));
 
 const setProducts = async () => {
-  const response = await axios.get('http://localhost:3001/api/product');
+  const response = await axios.get('https://aais-kitchen.onrender.com/api/product');
 
   if (response.data) {
     localStorage.setItem('products', JSON.stringify(response.data))
@@ -22,7 +22,7 @@ const setProducts = async () => {
 const getOrder = async (session_id) => {
   localStorage.removeItem('orderId')
   const response = await axios.post(
-    "http://localhost:3001/api/stripe/success",
+    "https://aais-kitchen.onrender.com/api/stripe/success",
     { session_id }
   );
 
@@ -42,7 +42,7 @@ const getOrder = async (session_id) => {
     });
 
     const purchased = await axios.post(
-      "http://localhost:3001/api/order/",
+      "https://aais-kitchen.onrender.com/api/order/",
       {
         userId: user.id,
         orderedItems: purchasedItems,
@@ -60,7 +60,7 @@ const getOrder = async (session_id) => {
       const products = await getAllProducts();
       localStorage.setItem('products', JSON.stringify(products))
 
-      const result = await axios.patch("http://localhost:3001/api/users/cart", {
+      const result = await axios.patch("https://aais-kitchen.onrender.com/api/users/cart", {
         userId: user.id,
         productId: ''
       })

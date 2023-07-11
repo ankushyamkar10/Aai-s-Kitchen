@@ -7,7 +7,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 import axios from 'axios'
 
 const getReviews = async () => {
-    const res = await axios.get('http://localhost:3001/api/review')
+    const res = await axios.get('https://aais-kitchen.onrender.com/api/review')
 
     if (res.data)
         return res.data
