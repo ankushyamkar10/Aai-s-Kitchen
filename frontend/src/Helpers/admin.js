@@ -3,7 +3,7 @@
 // import '../App.css'
 // import axios from 'axios';
 
-// // const url = "https://aais-kitchen.onrender.com/api/product/648841311071d14111a4d624"
+// // const url = "https://aais-kitchen-backend.onrender.com/api/product/648841311071d14111a4d624"
 
 // function Admin() {
   

@@ -1,7 +1,7 @@
 import axios from "axios"
 
-const url = 'https://aais-kitchen.onrender.com/api/users/'
-const productsUrl = 'https://aais-kitchen.onrender.com/api/product/'
+const url = 'https://aais-kitchen-backend.onrender.com/api/users/'
+const productsUrl = 'https://aais-kitchen-backend.onrender.com/api/product/'
 
 
 const register = async (userData) => {

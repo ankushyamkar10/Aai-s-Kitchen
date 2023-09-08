@@ -17,7 +17,7 @@ const Review = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const response = await axios.post('https://aais-kitchen.onrender.com/api/review', {
+        const response = await axios.post('https://aais-kitchen-backend.onrender.com/api/review', {
             rating: Number(ratingRef.current.value),
             review: reviewRef.current.value
         },
