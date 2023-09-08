@@ -68,7 +68,7 @@ const Register = () => {
         <div className=''>
           <form className='flex flex-col' onSubmit={(e) => handleSubmit(e)}>
             <div className='mt-2'>
-              <input type='email' name='name' title='Enter your name' value={formData.name} className='text-sm w-full p-2 my-2 border border-gray-400 focus:outline-none rounded ' placeholder='Username' autoComplete='on' required onChange={(e) => { handleChange(e) }} />
+              <input type='text' name='name' title='Enter your name' value={formData.name} className='text-sm w-full p-2 my-2 border border-gray-400 focus:outline-none rounded ' placeholder='Username' autoComplete='on' required onChange={(e) => { handleChange(e) }} />
             </div>
             <div className=''>
               <input type='email' name='email' title='Enter your email' value={formData.email} className='text-sm w-full p-2 my-2 border border-gray-400 focus:outline-none rounded ' placeholder='Email' autoComplete='on' required onChange={(e) => { handleChange(e) }} />
