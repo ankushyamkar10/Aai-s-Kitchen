@@ -19,7 +19,7 @@ const handleClick = async (data, email) => {
     };
   });
 
-  const res = await axios.post("https://aais-kitchen.onrender.com/api/stripe/pay", {
+  const res = await axios.post("https://aais-kitchen-backend.onrender.com/api/stripe/pay", {
     items,
     email
   });

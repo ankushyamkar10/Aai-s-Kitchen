@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 import Navbar from '../components/Navbar';
 
 const getOrders = async (user) => {
-  const response = await axios.get('https://aais-kitchen.onrender.com/api/order', { headers: { Authorization: `Bearer ${user.token}` } })
+  const response = await axios.get('https://aais-kitchen-backend.onrender.com/api/order', { headers: { Authorization: `Bearer ${user.token}` } })
 
   if (response.data) {
     return response.data
@@ -15,7 +15,7 @@ const getOrders = async (user) => {
 }
 
 const handleClick = async (items, email) => {
-  const res = await axios.post("https://aais-kitchen.onrender.com/api/stripe/pay", {
+  const res = await axios.post("https://aais-kitchen-backend.onrender.com/api/stripe/pay", {
     items,
     email
   });
