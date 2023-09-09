@@ -1,7 +1,7 @@
 const asyncHandler = require("express-async-handler");
 const stripe = require('stripe')(process.env.STRIPE_SECRET)
 
-const DOMAIN = 'https://aais-kitchen-client.onrender.com'
+const DOMAIN = 'https://aaiskitchen.netlify.com'
 
 const makeOrder = asyncHandler(async (req, res) => {
     try {
