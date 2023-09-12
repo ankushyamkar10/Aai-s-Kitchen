@@ -16,6 +16,7 @@ import Admin from "./Helpers/admin";
 import Orders from "./Pages/Orders";
 import Review from "./Pages/Review";
 import Navbar from "./components/Navbar";
+import Intermediatory from "./Pages/Intermediatory";
 
 
 function App() {
@@ -30,15 +31,16 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/favourites" element={<Favourites />} />
-          <Route path="/checkOut" element={<CheckOut />}/>
+          <Route path="/checkOut" element={<CheckOut />} />
           <Route path='/success' element={<Success />} />
           <Route path='/failure' element={<Failure />} />
           <Route path='/admin' element={<Admin />} />
           <Route path='/orders' element={<Orders />} />
           <Route path='/review' element={<Review />} />
+          <Route path="/auth" element={<Intermediatory />} />
         </Routes>
       </Router>
-      <ToastContainer position="bottom-center"/>
+      <ToastContainer position="bottom-center" />
     </>
   );
 }

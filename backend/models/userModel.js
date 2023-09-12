@@ -11,10 +11,8 @@ const userSchema = mongoose.Schema(
       required: [true, 'Please add the email'],
       unique: true,
     },
-    password: {
-      type: String,
-      required: [true, 'Please add the password'],
-    },
+    password: String,
+    googleId: String,
     favourites: {
       type: Array,
       default: []

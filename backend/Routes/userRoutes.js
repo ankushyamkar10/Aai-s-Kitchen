@@ -6,6 +6,7 @@ const {
   loginUser,
   getMe,
   getAllUsers, getUserOtherData, updateCart, updateFavourites,
+  getGoogleOAuthUrl, getGoogleAuthCode, updatePassword
 } = require('../controllers/userController');
 
 router.post('/register', registerUser);
@@ -17,5 +18,8 @@ router.patch('/cart', updateCart)
 router.post('/favourites', getUserOtherData)
 router.post('/cart', getUserOtherData)
 router.get('/purchased', getUserOtherData)
+router.get('/getGoogleOAuthUrl', getGoogleOAuthUrl)
+router.post('/getGoogleAuthCode', getGoogleAuthCode)
+router.patch('/updatePassword', updatePassword)
 
 module.exports = router;

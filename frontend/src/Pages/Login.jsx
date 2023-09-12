@@ -6,6 +6,10 @@ import { toast } from 'react-toastify'
 import { Link, useNavigate } from "react-router-dom";
 import { CircleLoader } from 'react-spinners'
 import Navbar from '../components/Navbar'
+import GLogin from '../assets/Google.svg'
+import axios from 'axios'
+
+
 const Login = () => {
   const [formData, setFormData] = useState({
     email: '',
@@ -39,6 +43,11 @@ const Login = () => {
     dispatch(login({ email: formData.email, password: formData.currPassword }))
   }
 
+  const handleGetUrl = async () => {
+    const response = await axios.get('https://aais-kitchen-backend.onrender.com/api/users/getGoogleOAUthUrl')
+    window.location.assign(response.data)
+  }
+
   if (isLoading)
     return <div className="relative">
       <CircleLoader color="black" size={25} loading={true} className="absolute top-[50vh] left-[50vw]" />
@@ -47,9 +56,17 @@ const Login = () => {
   return (
     <div className='bg-gray-200 relative h-[100vh]'>
       <Navbar />
-        <div className='flex flex-col gap-4 w-[80vw] mx-[10vw] p-6 bg-white absolute top-[20%] md:w-[60vw] md:mx-[20vw] lg:w-[40vw] lg:mx-[30vw]'>
+      <div className='flex flex-col gap-4 w-[80vw] mx-[10vw] p-6 bg-white absolute top-[20%] md:w-[60vw] md:mx-[20vw] lg:w-[40vw] lg:mx-[30vw]'>
         <div className='w-52 md:w-60 mx-auto' >
           <img src={RegisterImg} alt='Register' className='h-52 w-full mx-auto' />
+        </div>
+
+        <section className='flex items-center justify-center w-fit my-4 mx-auto p-3 border border-gray-400 cursor-pointer' onClick={handleGetUrl}>
+          <img src={GLogin} alt="" className='mr-2 ' />
+          <div>Google</div>
+        </section>
+        <div style={{ margin: ' auto' }}>
+          OR
         </div>
         <div className=''>
           <form className='flex flex-col' onSubmit={(e) => handleSubmit(e)}>
