@@ -6,7 +6,7 @@
 // // const url = "https://aais-kitchen-backend.onrender.com/api/product/648841311071d14111a4d624"
 
 // function Admin() {
-  
+
 //   const [postImage, setPostImage] = useState( { myFile : ""})
 
 //   const createPost = async (newImage) => {
@@ -31,7 +31,7 @@
 //   }
 
 //   return (
-    
+
 //     <div className="App">
 //       <form onSubmit={handleSubmit}>
 
@@ -39,7 +39,7 @@
 //           <img src={postImage.myFile || avatar } alt="" className='w-48 h-48' />
 //         </label>
 
-//         <input 
+//         <input
 //           type="file"
 //           lable="Image"
 //           name="myFile"
@@ -47,7 +47,7 @@
 //           accept='.jpeg, .png, .jpg'
 //           onChange={(e) => handleFileUpload(e)}
 //          />
-        
+
 //          <h3>Doris Wilder</h3>
 //          <span>Designer</span>
 
@@ -58,7 +58,6 @@
 // }
 
 // export default Admin
-
 
 // function convertToBase64(file){
 //   return new Promise((resolve, reject) => {

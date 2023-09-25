@@ -3,7 +3,6 @@ import axios from "axios";
 import { FaTrash } from "react-icons/fa";
 import StarRatings from "react-star-ratings";
 
-
 const CheckOutWrapper = ({ product, onChange, setCart }) => {
   const user = JSON.parse(localStorage.getItem("user"));
   const [quantity, setQuantity] = useState(product.countInStock === 0 ? 0 : 1);
@@ -14,7 +13,7 @@ const CheckOutWrapper = ({ product, onChange, setCart }) => {
     const response = await axios.patch(
       `https://aais-kitchen-backend.onrender.com/api/users/cart?action=remove`,
       {
-        userId: user.id,
+        userId: user._id,
         productId: product._id,
       }
     );
@@ -44,13 +43,18 @@ const CheckOutWrapper = ({ product, onChange, setCart }) => {
         <h3 className="text-sm">{product.description}</h3>
 
         <p className="text-sm">Price : ₹{product.price}</p>
-        <p className="text-sm"><StarRatings
-          rating={product.rating}
-          starDimension="15px"
-          starSpacing="0px"
-          starEmptyColor="grey"
-          starRatedColor="#FFD93D"
-        /> <span className="text-[0.6rem] ml-1">{`(${product.rating} / 5)`} </span></p>
+        <p className="text-sm">
+          <StarRatings
+            rating={product.rating}
+            starDimension="15px"
+            starSpacing="0px"
+            starEmptyColor="grey"
+            starRatedColor="#FFD93D"
+          />{" "}
+          <span className="text-[0.6rem] ml-1">
+            {`(${product.rating} / 5)`}{" "}
+          </span>
+        </p>
 
         <div className="flex flex-row mt-1 mb-2 items-center">
           <div className="flex flex-row items-center">

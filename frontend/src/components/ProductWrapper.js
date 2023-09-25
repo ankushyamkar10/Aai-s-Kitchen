@@ -23,7 +23,7 @@ const ProductWrapper = ({ product, favAndCart, setFavAndCart }) => {
     const response = await axios.patch(
       `https://aais-kitchen-backend.onrender.com/api/users${pathname}?action=${action}`,
       {
-        userId: user.id,
+        userId: user._id,
         productId: product._id,
       }
     );
@@ -40,7 +40,7 @@ const ProductWrapper = ({ product, favAndCart, setFavAndCart }) => {
     const response = await axios.patch(
       `https://aais-kitchen-backend.onrender.com/api/users${pathname}?action=${action}`,
       {
-        userId: user.id,
+        userId: user._id,
         productId: product._id,
       }
     );
@@ -56,9 +56,15 @@ const ProductWrapper = ({ product, favAndCart, setFavAndCart }) => {
         {product.countInStock === 0 && (
           <div className="bg-white bg-opacity-10 w-[47vw] h-[19.1rem] absolute z-50 backdrop-blur-[1px] "></div>
         )}
-        <img src={product.imgUrl} alt={product.name} className=" h-44 max-h-38 md:h-56 " />
+        <img
+          src={product.imgUrl}
+          alt={product.name}
+          className=" h-44 max-h-38 md:h-56 "
+        />
         <div className="px-1 border border-gray-200 border-t-0 md:pb-2 md:px-2">
-          <h3 className="text-md md:text-lg font-semibold tracking-wide ">{product.name}</h3>
+          <h3 className="text-md md:text-lg font-semibold tracking-wide ">
+            {product.name}
+          </h3>
           <h3 className="text-sm">{product.description}</h3>
           <div
             className={` w-4 h-4  absolute right-2 top-2 bg-white border-2 `}
@@ -81,8 +87,16 @@ const ProductWrapper = ({ product, favAndCart, setFavAndCart }) => {
           <span className="text-xs ml-1">{`(${product.rating} / 5)`} </span>
 
           <div className="flex items-center justify-between relative my-2">
-            <button className="flex items-center px-2 py-1 text-xs border border-black  hover:text-white hover:bg-yellow-500 hover:border-0 rounded-[0.25rem]" onClick={() => setShowDrawer(!showDrawer)}  >
-              Details {showDrawer ? <FaCaretUp className="ml-2" /> : <FaCaretDown className="ml-2" />}
+            <button
+              className="flex items-center px-2 py-1 text-xs border border-black  hover:text-white hover:bg-yellow-500 hover:border-0 rounded-[0.25rem]"
+              onClick={() => setShowDrawer(!showDrawer)}
+            >
+              Details{" "}
+              {showDrawer ? (
+                <FaCaretUp className="ml-2" />
+              ) : (
+                <FaCaretDown className="ml-2" />
+              )}
             </button>
             {path !== "/checkOut" && (
               <button
@@ -95,10 +109,12 @@ const ProductWrapper = ({ product, favAndCart, setFavAndCart }) => {
             )}
           </div>
 
-          {showDrawer && <div className="text-[0.7rem] leading-3 md:text-sm md:py-2">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id, obcaecati? Nostrum sunt
-          </div>
-          }
+          {showDrawer && (
+            <div className="text-[0.7rem] leading-3 md:text-sm md:py-2">
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id,
+              obcaecati? Nostrum sunt
+            </div>
+          )}
           {path !== "/checkOut" && (
             <div
               onClick={() => handleFavoutites("/favourites")}
@@ -118,4 +134,3 @@ const ProductWrapper = ({ product, favAndCart, setFavAndCart }) => {
 };
 
 export default ProductWrapper;
-
