@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { FaTrash } from "react-icons/fa";
 import StarRatings from "react-star-ratings";
+import { localUrl, deployUrl } from "../Helpers/Urls";
 
 const CheckOutWrapper = ({ product, onChange, setCart }) => {
   const user = JSON.parse(localStorage.getItem("user"));
@@ -11,7 +12,7 @@ const CheckOutWrapper = ({ product, onChange, setCart }) => {
 
   const handleCart = async () => {
     const response = await axios.patch(
-      `https://aais-kitchen-backend.onrender.com/api/users/cart?action=remove`,
+      `${deployUrl}/api/users/cart?action=remove`,
       {
         userId: user._id,
         productId: product._id,

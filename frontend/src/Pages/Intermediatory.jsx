@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { login, reset } from "../app/store";
+import { localUrl, deployUrl } from "../Helpers/Urls";
 
 const Intermediatory = () => {
   const queryParameters = new URLSearchParams(window.location.search);
@@ -26,7 +27,7 @@ const Intermediatory = () => {
   useEffect(() => {
     async function fetchAccessToken() {
       const response = await axios.post(
-        "https://aais-kitchen-backend.onrender.com/api/users/getGoogleAuthCode",
+        `${deployUrl}/api/users/getGoogleAuthCode`,
         { code }
       );
       return response.data;

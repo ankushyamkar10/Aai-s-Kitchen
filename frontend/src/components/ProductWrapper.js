@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { FaHeart, FaCaretDown, FaCaretUp, FaRegHeart } from "react-icons/fa";
 import axios from "axios";
 import StarRatings from "react-star-ratings";
+import { localUrl, deployUrl } from "../Helpers/Urls";
 
 const ProductWrapper = ({ product, favAndCart, setFavAndCart }) => {
   const user = JSON.parse(localStorage.getItem("user"));
@@ -21,7 +22,7 @@ const ProductWrapper = ({ product, favAndCart, setFavAndCart }) => {
     else action = "add";
 
     const response = await axios.patch(
-      `https://aais-kitchen-backend.onrender.com/api/users${pathname}?action=${action}`,
+      `${deployUrl}/api/users${pathname}?action=${action}`,
       {
         userId: user._id,
         productId: product._id,
@@ -38,7 +39,7 @@ const ProductWrapper = ({ product, favAndCart, setFavAndCart }) => {
     action = addedToCart ? "remove" : "add";
 
     const response = await axios.patch(
-      `https://aais-kitchen-backend.onrender.com/api/users${pathname}?action=${action}`,
+      `${deployUrl}/api/users${pathname}?action=${action}`,
       {
         userId: user._id,
         productId: product._id,

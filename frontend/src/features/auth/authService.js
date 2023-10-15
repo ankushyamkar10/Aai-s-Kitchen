@@ -3,8 +3,8 @@ import axios from "axios";
 const url = "https://aais-kitchen-backend.onrender.com/api/users/";
 const productsUrl = "https://aais-kitchen-backend.onrender.com/api/product/";
 
-// const url = 'https://aais-kitchen-backend.onrender.com/api/users/'
-// const productsUrl = 'https://aais-kitchen-backend.onrender.com/api/product/'
+// const url = 'http://localhost:3001/api/users/'
+// const productsUrl = 'http://localhost:3001/api/product/'
 
 const register = async (userData) => {
   const response = await axios.post(url + "register", userData);

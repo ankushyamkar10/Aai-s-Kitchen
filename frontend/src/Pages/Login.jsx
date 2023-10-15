@@ -8,6 +8,7 @@ import { CircleLoader } from "react-spinners";
 import Navbar from "../components/Navbar";
 import GLogin from "../assets/Google.svg";
 import axios from "axios";
+import { localUrl, deployUrl } from "../Helpers/Urls";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -43,7 +44,7 @@ const Login = () => {
 
   const handleGetUrl = async () => {
     const response = await axios.get(
-      "https://aais-kitchen-backend.onrender.com/api/users/getGoogleOAuthUrl"
+      `${deployUrl}/api/users/getGoogleOAuthUrl`
     );
     window.location.assign(response.data);
   };

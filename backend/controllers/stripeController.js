@@ -1,74 +1,72 @@
 const asyncHandler = require("express-async-handler");
-const stripe = require('stripe')(process.env.STRIPE_SECRET)
+const stripe = require("stripe")(process.env.STRIPE_SECRET);
 
-const DOMAIN = 'https://aaiskitchen.netlify.com'
+// const DOMAIN = 'https://aaiskitchen.netlify.com'
+const DOMAIN = "http://localhost:3000";
 
 const makeOrder = asyncHandler(async (req, res) => {
-    try {
+  try {
+    const { items, email } = req.body;
 
-        const { items,email } = req.body;
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ["card"],
+      mode: "payment",
+      line_items: items.map((item) => {
+        return {
+          price_data: {
+            currency: "inr",
+            product_data: {
+              name: item.name,
+            },
+            unit_amount: item.price * 100,
+          },
+          quantity: item.quantity,
+          adjustable_quantity: {
+            enabled: true,
+            minimum: 1,
+            maximum: item.stock,
+          },
+        };
+      }),
+      customer_email: email,
 
-        const session = await stripe.checkout.sessions.create({
-            payment_method_types: ['card'],
-            mode: 'payment',
-            line_items: items.map((item) => {
-                return {
-                    price_data: {
-                        currency: 'inr',
-                        product_data: {
-                            name: item.name
-                        },
-                        unit_amount: (item.price) * 100,
-                    },
-                    quantity: item.quantity,
-                    adjustable_quantity: {
-                        enabled: true,
-                        minimum: 1,
-                        maximum: item.stock,
-                      },
-                }
-            }),
-            customer_email : email,
-            
-            invoice_creation: {
-                enabled: true,
-            },
-            phone_number_collection: {
-                enabled: true,
-            },
-            shipping_address_collection: {
-                allowed_countries: ['IN'],
-            },
-            success_url: `${DOMAIN}/success`,
-            cancel_url: `${DOMAIN}/failure`,
-        })
-        res.json({ url: session.url, session: session })
-
-    } catch (error) {
-        res.status(500).json({ message: error.message })
-    }
-})
+      invoice_creation: {
+        enabled: true,
+      },
+      phone_number_collection: {
+        enabled: true,
+      },
+      shipping_address_collection: {
+        allowed_countries: ["IN"],
+      },
+      success_url: `${DOMAIN}/success`,
+      cancel_url: `${DOMAIN}/failure`,
+    });
+    res.json({ url: session.url, session: session });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
 
 const getOrderDetails = asyncHandler(async (req, res) => {
-    const { session_id } = req.body;
-    const session = await stripe.checkout.sessions.retrieve(session_id);
-    // const lineItems = await stripe.checkout.sessions.listLineItems(session_id);
-    if (session) {
-        const invoice = await stripe.invoices.retrieve(session.invoice)
+  const { session_id } = req.body;
+  const session = await stripe.checkout.sessions.retrieve(session_id);
+  // const lineItems = await stripe.checkout.sessions.listLineItems(session_id);
+  if (session) {
+    const invoice = await stripe.invoices.retrieve(session.invoice);
 
-        if (invoice) {
-            res.json({
-                session,
-                invoice
-            })
-        }
-        else {
-            res.json(session)
-        }
+    if (invoice) {
+      res.json({
+        session,
+        invoice,
+      });
+    } else {
+      res.json(session);
     }
-})
+  }
+});
 
 module.exports = {
-    makeOrder,
-    getOrderDetails
-}
+  makeOrder,
+  getOrderDetails,
+};

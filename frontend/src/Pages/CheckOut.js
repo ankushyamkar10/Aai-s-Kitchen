@@ -7,6 +7,7 @@ import { CircleLoader } from "react-spinners";
 import Navbar from "../components/Navbar";
 import EmptyCart from "../assets/empty-cart.gif";
 import { toast } from "react-toastify";
+import { localUrl, deployUrl } from "../Helpers/Urls";
 
 const handleClick = async (data, email) => {
   const items = data.map((product) => {
@@ -18,13 +19,10 @@ const handleClick = async (data, email) => {
     };
   });
 
-  const res = await axios.post(
-    "https://aais-kitchen-backend.onrender.com/api/stripe/pay",
-    {
-      items,
-      email,
-    }
-  );
+  const res = await axios.post(`${deployUrl}/api/stripe/pay`, {
+    items,
+    email,
+  });
 
   if (!res) {
     toast.error("An internal error occured");

@@ -12,7 +12,7 @@ import CheckOut from "./Pages/CheckOut";
 import axios from "axios";
 import Success from "./Pages/Success";
 import Failure from "./Pages/Failure";
-// import Admin from "./Helpers/admin";
+import Admin from "./Helpers/admin";
 import Orders from "./Pages/Orders";
 import Review from "./Pages/Review";
 import Navbar from "./components/Navbar";
@@ -32,7 +32,7 @@ function App() {
           <Route path="/checkOut" element={<CheckOut />} />
           <Route path="/success" element={<Success />} />
           <Route path="/failure" element={<Failure />} />
-          {/* <Route path='/admin' element={<Admin />} /> */}
+          <Route path="/admin" element={<Admin />} />
           <Route path="/orders" element={<Orders />} />
           <Route path="/review" element={<Review />} />
           <Route path="/auth" element={<Intermediatory />} />

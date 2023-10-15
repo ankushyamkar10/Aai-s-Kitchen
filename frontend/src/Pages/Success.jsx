@@ -8,13 +8,12 @@ import { MdVerified } from "react-icons/md";
 import Navbar from "../components/Navbar";
 import { Link } from "react-router-dom";
 import foodDelivery from "../assets/FoodDelivery.gif";
+import { localUrl, deployUrl } from "../Helpers/Urls";
 
 const user = JSON.parse(localStorage.getItem("user"));
 
 const setProducts = async () => {
-  const response = await axios.get(
-    "https://aais-kitchen-backend.onrender.com/api/product"
-  );
+  const response = await axios.get(`${deployUrl}/api/product`);
 
   if (response.data) {
     localStorage.setItem("products", JSON.stringify(response.data));
@@ -23,10 +22,9 @@ const setProducts = async () => {
 
 const getOrder = async (session_id) => {
   localStorage.removeItem("orderId");
-  const response = await axios.post(
-    "https://aais-kitchen-backend.onrender.com/api/stripe/success",
-    { session_id }
-  );
+  const response = await axios.post(`${deployUrl}/api/stripe/success`, {
+    session_id,
+  });
 
   if (response?.data?.session?.payment_status === "paid") {
     const invoice = response.data?.invoice;
@@ -44,7 +42,7 @@ const getOrder = async (session_id) => {
     });
 
     const purchased = await axios.post(
-      "https://aais-kitchen-backend.onrender.com/api/order/",
+      `${deployUrl}/api/order/`,
       {
         userId: user._id,
         orderedItems: purchasedItems,
@@ -62,13 +60,10 @@ const getOrder = async (session_id) => {
       const products = await getAllProducts();
       localStorage.setItem("products", JSON.stringify(products));
 
-      const result = await axios.patch(
-        "https://aais-kitchen-backend.onrender.com/api/users/cart",
-        {
-          userId: user._id,
-          productId: "",
-        }
-      );
+      const result = await axios.patch("${deployUrl}/api/users/cart", {
+        userId: user._id,
+        productId: "",
+      });
     } else {
       toast.info("Order not placed . your money will be refunded");
     }

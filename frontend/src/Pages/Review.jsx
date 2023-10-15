@@ -4,6 +4,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { FaEnvelope, FaShoppingCart, FaStar, FaUser } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { localUrl, deployUrl } from "../Helpers/Urls";
 
 const Review = () => {
   const user = JSON.parse(localStorage.getItem("user"));
@@ -18,7 +19,7 @@ const Review = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const response = await axios.post(
-      "https://aais-kitchen-backend.onrender.com/api/review",
+      `${deployUrl}/api/review`,
       {
         rating: Number(ratingRef.current.value),
         review: reviewRef.current.value,

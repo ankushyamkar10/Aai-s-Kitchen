@@ -30,7 +30,7 @@ const registerUser = asyncHandler(async (req, res) => {
   if (newUser) {
     res.status(201).json({
       //201 status : OK
-      _id: newuser._id,
+      _id: newUser._id,
       name: newUser.name,
       email: newUser.email,
       token: generateToken(newUser._id),

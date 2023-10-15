@@ -3,13 +3,12 @@ import avatar from "../assets/avatar.png";
 import StarRatings from "react-star-ratings";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { localUrl, deployUrl } from "../Helpers/Urls";
 
 import axios from "axios";
 
 const getReviews = async () => {
-  const res = await axios.get(
-    "https://aais-kitchen-backend.onrender.com/api/review"
-  );
+  const res = await axios.get(`${deployUrl}/api/review`);
 
   if (res.data) return res.data;
 };
